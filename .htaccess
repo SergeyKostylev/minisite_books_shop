@@ -1,0 +1,1 @@
+ErrorDocument 404 /controller/error_404.php

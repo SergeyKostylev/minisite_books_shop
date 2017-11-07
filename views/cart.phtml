@@ -1,0 +1,27 @@
+<h1 class="text-center">Cart&#160<span class="glyphicon glyphicon-shopping-cart size_icon" ></span></h1>
+<div class="panel panel-info">
+    <div class=" panel-heading ">
+        <div class="text-right ">
+            <a href="/?page=cart&amp;action=clear_cart" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove " ></span>&#160Clear catr</a>
+        </div>
+    </div>
+    <div class="panel-body">
+    <?php foreach ($books as $book) : ?>
+        <div>
+            <i> Code:&#160</i><?=$book['id']?><span>&#160&#160&#160</span>
+            <b><?=$book['title']?></b><span>&#160&#160&#160</span> <i> Author:&#160&#160&#160</i><?=$book['author']?>
+
+            <div class="text-right float-rigth">
+                <a href="/?page=books&amp;action=show&amp;id=<?=$book['id']?>" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-eye-open " ></span>&#160Show</a>
+                <a href="/?page=cart&amp;action=delete&amp;id=<?=$book['id']?>"class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove " ></span>&#160Delete</a>
+                <span>&#160&#160&#160</span>$<?=$book['price']?>
+            </div>
+            <br><br>
+        </div>
+    <?php endforeach; ?>
+
+    </div>
+    <div class="panel-footer text-right">
+        <i> Amount of price:&#160&#160&#160</i>$<?=$sum_price?>
+    </div>
+</div>
