@@ -1,0 +1,28 @@
+<div class="text-center">
+    <h1><?=$author['first_name']?><span> </span><?=$author['last_name']?></h1>
+    <br>
+    <br>
+    <br>
+    Birthdate:&#160
+    <h4>
+        <?=$str=substr($author['birth_date'],8, 2)?>
+        <?=$str=substr($author['birth_date'],5, 2)?>
+        <?=$str=substr($author['birth_date'],0, 4)?>
+
+    </h4>
+
+    <br>
+
+
+
+    Author's book:
+    <?php foreach ($author_books as $book) : ?>
+       <div class="font_size_16pt"><?=$book['title']?>
+           <a href="/?page=books&amp;action=show&amp;id=<?=$book['id']?>" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-eye-open " ></span>&#160Show</a>
+       </div>
+    <?php endforeach;?>
+    <br>
+    <br>
+    ---soon the information will appear---
+
+</div>

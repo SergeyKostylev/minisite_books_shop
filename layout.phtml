@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Book Shop</title>
     <link rel="stylesheet" href="course/css/bootstrap.css">
     <link rel="stylesheet" href="course/css/bootstrap.min.css">
 
@@ -19,12 +19,15 @@
     <div class="container">
 
             <div class="navbar-header">
-                <a class="navbar-brand" href="/" >Home page</a>
+                <a class="navbar-brand" href="/" ><b>Book Shop</b></a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li> <a class="nav-item btn" href="/?page=books">Books</a></li>
-                    <li><a class="nav-item btn" href="/?page=contact">Contacts</a></li>
+                    <li> <a class="nav-item btn" href="/?page=books&amp;category=all">Books</a></li>
+
+                    <li><a class="nav-item btn" href="/?page=authors">Authors</a></li>
+
+                    <li><a class="nav-item btn" href="/?page=contact">Contacs</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class=" btn btn-secondary" href="/?page=cart"><span class="glyphicon glyphicon-shopping-cart size_cart_icon" ></span></a></li>
@@ -35,23 +38,39 @@
     </div>
 </nav>
 
+<div class="container">
+    <div class="row">
+
+        <div class="bd-my-callout col-xs-12  col-sm-12 col-md-2 col-lg-2 " style="padding: 20px">
+            <span class="font_style">Categories</span><br>
+            <?php
+                $count_all_book=0;
+
+                foreach ($SedBar as $Category) : ?>
+
+                    <a href="/?page=books&amp;category=<?=$Category['name']?>"><?=$Category['name']?>(<?=$Category['count(b.id)']?>)</a><br>
+
+                    <?php $count_all_book=$count_all_book+$Category['count(b.id)'];?>
+                <?php endforeach;?>
+            <a href="/?page=books&amp;category=all">ALL categories(<?=$count_all_book?>)</a>
+        </div>
 
 
 
+            <div class=" col-xs-12 col-sm-12 col-md-10 col-lg-10">
 
+                <?=$content?>
 
-    <div class="main_padding">
-
-        <?=$content?>
-        <br>
-        <br>
-
+            </div>
 
     </div>
 
+
+</div>
+<br><br>
     <div class="text-center panel-footer footer">
         <span >mini site &copy; 2017</span>
     </div>
 
-</body>
+</body >
 </html>

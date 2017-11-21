@@ -1,8 +1,25 @@
 <div class="text-center">
     <h1><?=$book['title']?></h1>
     <br>
-    <i>Author:&#160</i><h3 ><?=$book['author']?></h3>
+    <i>Author(s):&#160</i><h3 ><?=$book['authors']?></h3>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
-    ---soon the information will appear---
+    <i>Description: </i><br><span class="font_style"> <?=$book['description']?></span>
+
+
+
+<br><br><br>
+<!--    <div class="early_next_button">-->
+    <div>
+        <div class="btn btn-group text-center">
+            <a href="/?page=books&amp;action=show&amp;id=<?=$early?>" class="btn btn-primary <?=$early_disabled?> "><span class="glyphicon glyphicon-arrow-left"></span>&#160&#160&#160&#160&#160Early book&#160&#160&#160</a>
+            <a href="/?page=books&amp;action=show&amp;id=<?=$next?>"class="btn btn-primary  <?=$next_disabled?> ">&#160&#160&#160Next book&#160&#160&#160&#160&#160<span class="glyphicon glyphicon-arrow-right"></span></a>
+        </div>
+    </div>
 </div>

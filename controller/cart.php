@@ -1,9 +1,21 @@
 <?php
 
-function loadCard($arrayIds)
+function loadCard($dbConnection, $arrayIds)
 {
-    $str=file_get_contents('books.txt');
-    $books=unserialize($str);
+//    $str=file_get_contents('books.txt');
+//    $books=unserialize($str);
+//    $sql = 'SELECT * FROM book';
+    $sql='SELECT b.id, b.title, b.description, b.price, b.category_id, 
+                  GROUP_CONCAT(au.first_name, (SELECT \' \'), au.last_name SEPARATOR \', \') AS authors 
+    FROM book b
+    JOIN author_book a_b
+    ON b.id=a_b.book_id
+    JOIN author au
+    ON au.id =a_b.author_id
+    GROUP BY b.id;';
+    $res = mysqli_query($dbConnection, $sql);
+    $books = mysqli_fetch_all($res, MYSQLI_ASSOC);
+
     $result=[];
     $sum_price=0;
     foreach ($books as $book){
@@ -15,10 +27,21 @@ function loadCard($arrayIds)
     return $result;
 
 }
-function sumPrice($arrayIds)
+function sumPrice($dbConnection, $arrayIds)
 {
-    $str=file_get_contents('books.txt');
-    $books=unserialize($str);
+//    $str=file_get_contents('books.txt');
+//    $books=unserialize($str);
+//    $sql = 'SELECT * FROM book';
+    $sql='SELECT b.id, b.title, b.description, b.price, b.category_id, 
+                  GROUP_CONCAT(au.first_name, (SELECT \' \'), au.last_name SEPARATOR \', \') AS authors 
+    FROM book b
+    JOIN author_book a_b
+    ON b.id=a_b.book_id
+    JOIN author au
+    ON au.id =a_b.author_id
+    GROUP BY b.id;';
+    $res = mysqli_query($dbConnection, $sql);
+    $books = mysqli_fetch_all($res, MYSQLI_ASSOC);
     $result=[];
     $sum_price=0;
     foreach ($books as $book){
@@ -45,7 +68,7 @@ if ($action == 'add' && $id=requestGet('id')) {
 
     redirect('/?page=books');
 
-//removeSession('cart');
+
 
 }
 
@@ -59,10 +82,9 @@ if ($action == 'clear_cart'){
 
 
     if ($action == 'delete' && $id=requestGet('id')) {
-//    $currentCart=cookieGet('cart',serialize([]));
-//    $currentCart=unserialize($currentCart);
+
     $currentCart=getSession('cart',[]);
-    var_dump($currentCart) ;
+
     foreach ($currentCart as $key => $item)
     {
         if ($item == $id){
@@ -70,12 +92,12 @@ if ($action == 'clear_cart'){
         }
     }
     $_SESSION['cart']=$currentCart;
-//    cookieSet('cart', serialize($currentCart));
+
     redirect('/?page=cart');
 }
 $currentCart=getSession('cart',[]);
 //$currentCart=cookieGet('cart',serialize([]));
 //$currentCart=unserialize($currentCart);
 
-$sum_price=sumPrice($currentCart);
-$books=loadCard($currentCart);
+$sum_price=sumPrice($dbConnection, $currentCart);
+$books=loadCard($dbConnection,$currentCart);

@@ -2,37 +2,40 @@
 
 
 
+<div class="row ">
 
-<div class="panel-group" >
-<?php foreach ( $books as $book) : ?>
+    <?php foreach ( $books as $book) : ?>
+        <?php
+        if (!isset($_GET['category'])){$_GET['category']='all';}
+        if ($_GET['category'] == $book['category_name'] || $_GET['category'] == 'all')
+        {
+        ?>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-info" >
 
-    <div class="panel panel-info">
-
-        <div class="panel-heading">
-            <div class="text-primary float-left">
-                <span>Code:&#160</span> <?=$book['id']?>
+            <div class="panel-heading">
+                <div class="text-primary float-left">
+                    <span>Code:&#160</span> <?=$book['id']?>
+                </div>
+                <div class="text-right " >
+                    price: $<?=$book['price']?>
+                </div>
             </div>
-            <div class="text-right " >
-                $<?=$book['price']?>
+            <div class="panel-body ">
+                <span class="title_book_style long-text150"><?=$book['title']?></span><br>
+                <i class="float-left margin_top_author">Author(s):&#160&#160</i><span class="author_book_style long-text100"><?=$book['authors']?></span>
+                <img class="center-block" src="/course/book_pic.png" >
             </div>
-        </div>
+            <div class="panel-footer text-right">
+                <a href="/?page=books&amp;action=show&amp;id=<?=$book['id']?>" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-eye-open " ></span>&#160Show</a>
+                <a href="/?page=cart&amp;action=add&amp;id=<?=$book['id']?>" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-shopping-cart " ></span>&#160Add to cart</a>
 
-        <div class="panel-body">
-            <h3><?=$book['title']?></h3>
-            <i class="float-left">Author:&#160&#160</i><h4><?=$book['author']?></h4>
-
-        </div>
-        <div class="panel-footer text-right">
-            <a href="/?page=books&amp;action=show&amp;id=<?=$book['id']?>" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-eye-open " ></span>&#160Show</a>
-            <a href="/?page=cart&amp;action=add&amp;id=<?=$book['id']?>" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-shopping-cart " ></span>&#160Add to cart</a>
+            </div>
 
         </div>
+        </div>
+
+    <?php } endforeach;?>
 
 
-
-
-    </div>
-
-
-<?php endforeach; ?>
 </div>

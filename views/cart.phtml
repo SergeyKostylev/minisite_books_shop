@@ -9,7 +9,10 @@
     <?php foreach ($books as $book) : ?>
         <div>
             <i> Code:&#160</i><?=$book['id']?><span>&#160&#160&#160</span>
-            <b><?=$book['title']?></b><span>&#160&#160&#160</span> <i> Author:&#160&#160&#160</i><?=$book['author']?>
+            <b><?=$book['title']?></b><span>&#160&#160&#160</span>
+
+            <i> Author:&#160&#160&#160</i><?=$book['authors']?>
+
 
             <div class="text-right float-rigth">
                 <a href="/?page=books&amp;action=show&amp;id=<?=$book['id']?>" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-eye-open " ></span>&#160Show</a>

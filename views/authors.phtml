@@ -1,0 +1,17 @@
+<h1 class="text-center">Authors<span class="glyphicon glyphicon-user size_icon"></span></h1>
+
+<div class="text-center ">
+
+    <?php foreach ( $authors as $author) : ?>
+
+
+              <span class="font_size_16pt">
+               <?=$author['first_name']?><span> </span>
+                <?=$author['last_name']?></span>
+                    <a style="margin-top: -11px;" href="/?page=authors&amp;action=show_author&amp;id=<?=$author['id']?> "class="btn btn-xs btn-info">Information</a>
+                <br>
+
+
+
+<?php endforeach; ?>
+</div>
